@@ -50,6 +50,20 @@ router.post('/:id', async (req,res) => {
     })
 })
 
+router.put('/increase/:id', async (req, res) => {
+    const id  = req.params.id
+    //console.log(req.params.id)
+    await Cart.findByIdAndUpdate({ _id: id }, { $inc : {  quantity : 1 }});
+    res.json({msg:  "Successfully updated quantity"});
+})
+
+router.put('/decrease/:id', async (req, res) => {
+    const id  = req.params.id
+    //console.log(req.params.id)
+    await Cart.findByIdAndUpdate({ _id: id }, { $inc : {  quantity : -1 }});
+    res.json({msg:  "Successfully updated quantity"});
+})
+
 router.delete('/:id', async(req,res) => {
     const id = req.params.id;
 

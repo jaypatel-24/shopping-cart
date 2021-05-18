@@ -22,6 +22,17 @@ class CartList extends Component {
             console.log(err)
         }) 
     }
+
+    increaseQuantity = (id) => {
+        console.log(id)
+        axios.put(`/cart/increase/${id}`).then(response => console.log()).catch(err => console.log(err))
+    }
+
+    decreaseQuantity = (id) => {
+        console.log(id)
+        axios.put(`/cart/decrease/${id}`).then(response => console.log()).catch(err => console.log(err))
+    }
+
     render() {
         const { cartList } = this.state
         const text = "Cart is empty"
@@ -31,7 +42,12 @@ class CartList extends Component {
             <div style={itemStyle}>
                {cartList.length === 0 && <h3>{text}</h3>}
                {cartList.map(item => (
-                     <CartItem key={item._id} item={item}/>                    
+                     <CartItem 
+                        key={item._id} 
+                        item={item}
+                        increase={this.increaseQuantity}
+                        decrease={this.decreaseQuantity}
+                    />                    
                ))}
       </div>
         )

@@ -4,7 +4,7 @@ const router = express.Router();
 const Item = require('../models/Item')
 
 
-router.get('/', async (req,res) => {
+router.get('/items', async (req,res) => {
     try {
         const items = await Item.find();
         res.json(items);
